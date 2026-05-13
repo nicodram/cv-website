@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Update copyright year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile Menu Logic (Sesuai kode sebelumnya)
+  // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.textContent = '☰';
+    });
   });
 
   // DARK MODE TOGGLE LOGIC
@@ -15,8 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const iconMoon = document.querySelector('.icon-moon');
   const body = document.body;
 
-  // Cek preferensi tersimpan
-  if (localStorage.getItem('theme') === 'dark') {
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
     iconSun.style.display = 'none';
     iconMoon.style.display = 'block';
@@ -26,11 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
     
-    // Simpan preferensi
+    // Save preference to localStorage
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     
-    // Ganti Icon
-    iconSun.style.display = isDark ? 'none' : 'block';
-    iconMoon.style.display = isDark ? 'block' : 'none';
+    // Toggle icons
+    if (isDark) {
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+    } else {
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+    }
   });
 });
