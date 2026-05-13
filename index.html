@@ -34,61 +34,166 @@
   </nav>
 
   <main>
-   <!-- Hero Full Screen + Space SVG -->
+<!-- Hero Full Screen + Realistic Space SVG -->
 <header class="hero" id="hero">
   <div class="space-background">
     <svg id="space-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="nebula1" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.15"/>
-          <stop offset="100%" stop-color="transparent"/>
+        <!-- Nebula Gradients -->
+        <radialGradient id="nebulaPurple" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.4"/>
+          <stop offset="50%" stop-color="#6d28d9" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
         </radialGradient>
-        <radialGradient id="nebula2" cx="70%" cy="30%" r="40%">
-          <stop offset="0%" stop-color="var(--secondary)" stop-opacity="0.12"/>
-          <stop offset="100%" stop-color="transparent"/>
+        
+        <radialGradient id="nebulaBlue" cx="70%" cy="30%" r="45%">
+          <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.35"/>
+          <stop offset="60%" stop-color="#0891b2" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
         </radialGradient>
-        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="6" result="blur"/>
+        
+        <radialGradient id="nebulaPink" cx="30%" cy="60%" r="40%">
+          <stop offset="0%" stop-color="#ec4899" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Galaxy Gradient -->
+        <radialGradient id="galaxyCore" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.8"/>
+          <stop offset="30%" stop-color="#f59e0b" stop-opacity="0.5"/>
+          <stop offset="70%" stop-color="#d97706" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Star Glow Filter -->
+        <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- Nebula Blur -->
+        <filter id="nebulaBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="15" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+
+        <!-- Circuit Glow -->
+        <filter id="circuitGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
           <feComposite in="SourceGraphic" in2="blur" operator="over"/>
         </filter>
       </defs>
-      <!-- Nebula Background -->
-      <rect width="100%" height="100%" fill="var(--bg-space)"/>
-      <circle cx="960" cy="540" r="600" fill="url(#nebula1)" class="nebula"/>
-      <circle cx="1400" cy="300" r="450" fill="url(#nebula2)" class="nebula"/>
+
+      <!-- Deep Space Background -->
+      <rect width="100%" height="100%" fill="#020617"/>
       
-      <!-- Stars (Parallax Groups) -->
-      <g class="star-group" data-speed="0.1">
-        <circle cx="200" cy="150" r="1.5" fill="var(--star-color)" opacity="0.8"/>
-        <circle cx="450" cy="300" r="1" fill="var(--star-color)" opacity="0.6"/>
-        <circle cx="700" cy="200" r="2" fill="var(--star-color)" opacity="0.9"/>
-        <circle cx="1100" cy="400" r="1.2" fill="var(--star-color)" opacity="0.7"/>
-        <circle cx="1300" cy="150" r="1.8" fill="var(--star-color)" opacity="0.85"/>
-        <circle cx="1600" cy="350" r="1" fill="var(--star-color)" opacity="0.5"/>
-      </g>
-      <g class="star-group" data-speed="0.25">
-        <circle cx="150" cy="400" r="1.2" fill="var(--star-color)" opacity="0.7"/>
-        <circle cx="500" cy="500" r="1.5" fill="var(--star-color)" opacity="0.8"/>
-        <circle cx="850" cy="350" r="1" fill="var(--star-color)" opacity="0.6"/>
-        <circle cx="1200" cy="600" r="1.8" fill="var(--star-color)" opacity="0.9"/>
-        <circle cx="1500" cy="450" r="1.3" fill="var(--star-color)" opacity="0.75"/>
-        <circle cx="1750" cy="250" r="1" fill="var(--star-color)" opacity="0.5"/>
-      </g>
-      <g class="star-group" data-speed="0.4">
-        <circle cx="300" cy="700" r="1.5" fill="var(--star-color)" opacity="0.8"/>
-        <circle cx="600" cy="800" r="1" fill="var(--star-color)" opacity="0.6"/>
-        <circle cx="950" cy="650" r="2" fill="var(--star-color)" opacity="0.9"/>
-        <circle cx="1350" cy="750" r="1.2" fill="var(--star-color)" opacity="0.7"/>
-        <circle cx="1650" cy="600" r="1.8" fill="var(--star-color)" opacity="0.85"/>
+      <!-- Distant Galaxy -->
+      <ellipse cx="960" cy="540" rx="400" ry="180" fill="url(#galaxyCore)" opacity="0.4" transform="rotate(-15 960 540)"/>
+      
+      <!-- Nebula Clouds -->
+      <circle cx="400" cy="350" r="350" fill="url(#nebulaPurple)" filter="url(#nebulaBlur)" class="nebula"/>
+      <circle cx="1350" cy="280" r="320" fill="url(#nebulaBlue)" filter="url(#nebulaBlur)" class="nebula"/>
+      <circle cx="550" cy="650" r="280" fill="url(#nebulaPink)" filter="url(#nebulaBlur)" class="nebula"/>
+      <circle cx="1500" cy="700" r="300" fill="url(#nebulaPurple)" filter="url(#nebulaBlur)" opacity="0.6" class="nebula"/>
+
+      <!-- Star Field - Layer 1 (Distant Stars) -->
+      <g class="star-group" data-speed="0.05" opacity="0.4">
+        <circle cx="120" cy="80" r="0.8" fill="#ffffff"/>
+        <circle cx="280" cy="120" r="0.6" fill="#e0e7ff"/>
+        <circle cx="450" cy="95" r="0.7" fill="#ffffff"/>
+        <circle cx="620" cy="140" r="0.5" fill="#c7d2fe"/>
+        <circle cx="780" cy="110" r="0.8" fill="#ffffff"/>
+        <circle cx="940" cy="130" r="0.6" fill="#ffffff"/>
+        <circle cx="1100" cy="95" r="0.7" fill="#e0e7ff"/>
+        <circle cx="1260" cy="125" r="0.5" fill="#ffffff"/>
+        <circle cx="1420" cy="105" r="0.8" fill="#ffffff"/>
+        <circle cx="1580" cy="140" r="0.6" fill="#c7d2fe"/>
+        <circle cx="1740" cy="90" r="0.7" fill="#ffffff"/>
+        <circle cx="1850" cy="115" r="0.5" fill="#ffffff"/>
       </g>
 
-      <!-- Cyber Circuit Lines -->
-      <g class="circuit-lines" filter="url(#glow)">
-        <path d="M 100 900 Q 400 750, 960 540 T 1820 180" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round" class="circuit-path"/>
-        <path d="M 100 900 Q 400 800, 960 600 T 1820 300" stroke="var(--secondary)" stroke-width="1.5" fill="none" stroke-linecap="round" class="circuit-path" style="stroke-dasharray: 8 6;"/>
-        <circle cx="960" cy="540" r="8" fill="var(--accent)" class="circuit-node"/>
-        <circle cx="1820" cy="180" r="5" fill="var(--secondary)" class="circuit-node"/>
-        <circle cx="1820" cy="300" r="5" fill="var(--secondary)" class="circuit-node"/>
+      <!-- Star Field - Layer 2 (Medium Distance) -->
+      <g class="star-group" data-speed="0.15" opacity="0.6">
+        <circle cx="180" cy="220" r="1" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="350" cy="180" r="0.9" fill="#e0e7ff" filter="url(#starGlow)"/>
+        <circle cx="520" cy="240" r="1.1" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="690" cy="200" r="0.8" fill="#c7d2fe"/>
+        <circle cx="860" cy="230" r="1" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1030" cy="190" r="0.9" fill="#ffffff"/>
+        <circle cx="1200" cy="220" r="1.1" fill="#e0e7ff" filter="url(#starGlow)"/>
+        <circle cx="1370" cy="205" r="0.8" fill="#ffffff"/>
+        <circle cx="1540" cy="240" r="1" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1710" cy="185" r="0.9" fill="#c7d2fe"/>
+      </g>
+
+      <!-- Star Field - Layer 3 (Closer Stars) -->
+      <g class="star-group" data-speed="0.3" opacity="0.85">
+        <circle cx="250" cy="380" r="1.3" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="480" cy="420" r="1.2" fill="#e0e7ff" filter="url(#starGlow)"/>
+        <circle cx="710" cy="390" r="1.4" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="940" cy="430" r="1.1" fill="#c7d2fe" filter="url(#starGlow)"/>
+        <circle cx="1170" cy="400" r="1.3" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1400" cy="440" r="1.2" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1630" cy="385" r="1.4" fill="#e0e7ff" filter="url(#starGlow)"/>
+      </g>
+
+      <!-- Star Field - Layer 4 (Foreground Stars) -->
+      <g class="star-group" data-speed="0.5" opacity="1">
+        <circle cx="320" cy="550" r="1.6" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="580" cy="590" r="1.5" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="840" cy="560" r="1.7" fill="#e0e7ff" filter="url(#starGlow)"/>
+        <circle cx="1100" cy="600" r="1.4" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1360" cy="570" r="1.6" fill="#ffffff" filter="url(#starGlow)"/>
+        <circle cx="1620" cy="610" r="1.5" fill="#c7d2fe" filter="url(#starGlow)"/>
+      </g>
+
+      <!-- Bright Stars (Twinkling Effect) -->
+      <g class="star-group" data-speed="0.2">
+        <circle cx="420" cy="320" r="2" fill="#ffffff" filter="url(#starGlow)" class="bright-star"/>
+        <circle cx="890" cy="280" r="2.2" fill="#fef3c7" filter="url(#starGlow)" class="bright-star"/>
+        <circle cx="1280" cy="350" r="1.9" fill="#ffffff" filter="url(#starGlow)" class="bright-star"/>
+        <circle cx="1550" cy="480" r="2.1" fill="#e0e7ff" filter="url(#starGlow)" class="bright-star"/>
+        <circle cx="680" cy="520" r="2" fill="#ffffff" filter="url(#starGlow)" class="bright-star"/>
+      </g>
+
+      <!-- Constellation Lines (Subtle) -->
+      <g class="constellation" opacity="0.15" stroke="#a5b4fc" stroke-width="0.5">
+        <line x1="320" y1="550" x2="480" y2="420"/>
+        <line x1="480" y1="420" x2="580" y2="590"/>
+        <line x1="580" y1="590" x2="710" y2="390"/>
+        <line x1="840" y1="560" x2="940" y2="430"/>
+        <line x1="940" y1="430" x2="1100" y2="600"/>
+        <line x1="1100" y1="600" x2="1280" y2="350"/>
+      </g>
+
+      <!-- Tech Circuit Lines (ESG + Space Fusion) -->
+      <g class="circuit-lines" filter="url(#circuitGlow)" opacity="0.7">
+        <path d="M 150 850 Q 450 700, 960 540 T 1770 230" 
+              stroke="var(--accent)" stroke-width="2.5" fill="none" 
+              stroke-linecap="round" class="circuit-path"/>
+        <path d="M 150 850 Q 500 720, 960 580 T 1770 310" 
+              stroke="var(--secondary)" stroke-width="1.8" fill="none" 
+              stroke-linecap="round" stroke-dasharray="10 8" class="circuit-path"/>
+        <path d="M 200 900 Q 550 750, 960 540 T 1720 180" 
+              stroke="#00ff9d" stroke-width="1.5" fill="none" 
+              stroke-linecap="round" opacity="0.6" class="circuit-path"/>
+        
+        <!-- Circuit Nodes -->
+        <circle cx="960" cy="540" r="6" fill="var(--accent)" class="circuit-node"/>
+        <circle cx="1770" cy="230" r="4" fill="var(--secondary)" class="circuit-node"/>
+        <circle cx="1770" cy="310" r="4" fill="var(--secondary)" class="circuit-node"/>
+        <circle cx="150" cy="850" r="5" fill="#00ff9d" class="circuit-node"/>
+        <circle cx="1720" cy="180" r="4" fill="#00ff9d" class="circuit-node"/>
+      </g>
+
+      <!-- Asteroid Belt (Subtle) -->
+      <g class="asteroid-belt" opacity="0.3">
+        <ellipse cx="960" cy="540" rx="550" ry="220" fill="none" 
+                 stroke="#64748b" stroke-width="0.5" stroke-dasharray="3 8" 
+                 transform="rotate(-10 960 540)"/>
       </g>
     </svg>
   </div>
@@ -102,7 +207,9 @@
     </div>
     <div class="scroll-indicator">
       <span>Scroll</span>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+      </svg>
     </div>
   </div>
 </header>
