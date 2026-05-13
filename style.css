@@ -86,11 +86,112 @@ ul { list-style: none; }
 .hero { position: relative; height: 100vh; min-height: 650px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-space); }
 .space-background { position: absolute; inset: 0; z-index: 0; }
 #space-svg { width: 100%; height: 100%; }
-.hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 850px; }
-.hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; color: #ffffff; margin-bottom: 0.5rem; letter-spacing: -0.5px; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
-.hero.scrolled h1 { opacity: 0.9; transform: translateY(-10px); transition: all 0.4s; }
-.tagline { font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 650px; margin-left: auto; margin-right: auto; }
-.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+/* Hero Content - Updated */
+.hero-content { 
+  position: relative; 
+  z-index: 2; 
+  text-align: center; 
+  padding: 2rem; 
+  max-width: 750px; 
+}
+
+.hero h1 { 
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Lebih kecil dari 3.5rem */
+  font-weight: 700; /* Lebih ringan dari 800 */
+  color: #ffffff; 
+  margin-bottom: 0.8rem; 
+  letter-spacing: 0px; 
+  text-shadow: 0 2px 15px rgba(0,0,0,0.4); 
+}
+
+.tagline { 
+  font-size: 1rem; /* Sedikit lebih kecil */
+  color: #cbd5e1; 
+  margin-bottom: 1.8rem; 
+  max-width: 600px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  line-height: 1.5;
+}
+
+/* Buttons - More Simple & Compact */
+.hero-actions { 
+  display: flex; 
+  gap: 0.8rem; /* Lebih rapat */
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+
+.btn { 
+  padding: 0.65rem 1.3rem; /* Lebih compact dari 0.8rem 1.6rem */
+  border-radius: 6px; /* Lebih kecil dari 10px */
+  font-weight: 500; 
+  transition: all 0.25s; 
+  font-size: 0.9rem; /* Sedikit lebih kecil */
+}
+
+.btn-primary { 
+  background: var(--accent); 
+  color: #ffffff; 
+  border: none; 
+}
+
+.btn-primary:hover { 
+  background: var(--accent-hover, #1d4ed8); 
+  transform: translateY(-2px); 
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3); 
+}
+
+.btn-outline { 
+  border: 1.5px solid var(--accent); /* Lebih tipis dari 2px */
+  color: var(--accent); 
+  background: transparent; 
+}
+
+.btn-outline:hover { 
+  background: var(--accent); 
+  color: #ffffff; 
+  transform: translateY(-2px); 
+}
+
+/* Scroll Indicator - Posisi Lebih Bawah & Tengah */
+.scroll-indicator { 
+  position: absolute; 
+  bottom: 2.5rem; /* Lebih ke bawah dari 2rem */
+  left: 50%; 
+  transform: translateX(-50%); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 0.5rem; 
+  color: #94a3b8; 
+  font-size: 0.75rem; /* Lebih kecil */
+  animation: bounce 2s infinite; 
+  opacity: 0.8;
+}
+
+.scroll-indicator svg {
+  width: 20px; /* Lebih kecil dari 24px */
+  height: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hero h1 { 
+    font-size: 1.9rem; /* Lebih kecil di mobile */
+  }
+  .tagline {
+    font-size: 0.95rem;
+  }
+  .btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+  }
+  .scroll-indicator {
+    bottom: 2rem;
+    font-size: 0.7rem;
+  }
+}
 
 /* Buttons */
 .btn { padding: 0.8rem 1.6rem; border-radius: var(--radius); font-weight: 500; transition: all 0.25s; font-size: 0.95rem; }
