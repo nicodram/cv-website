@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Update copyright year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile Menu
+  // Mobile Menu Toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const navbar = document.getElementById('navbar');
@@ -53,4 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
       iconSun.style.display = 'block';
     }
   }
+
+  // Create floating particles for space effect
+  const spaceSections = document.querySelectorAll('.space-section');
+  spaceSections.forEach(section => {
+    const particles = document.createElement('div');
+    particles.className = 'particles';
+    
+    for (let i = 0; i < 5; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particles.appendChild(particle);
+    }
+    
+    section.appendChild(particles);
+  });
 });
