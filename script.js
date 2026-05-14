@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Update copyright year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile Menu Toggle
+  // Mobile Menu
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const navbar = document.getElementById('navbar');
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
   });
 
-  // Close menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
@@ -20,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Navbar Scroll Effect (Blur on scroll)
+  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -29,13 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Theme Toggle Logic
+  // Theme Toggle
   const themeToggle = document.getElementById('theme-toggle');
   const iconMoon = document.querySelector('.icon-moon');
   const iconSun = document.querySelector('.icon-sun');
   const html = document.documentElement;
 
-  // Load saved theme
   const savedTheme = localStorage.getItem('theme') || 'dark';
   setTheme(savedTheme);
 
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function setTheme(theme) {
     html.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    
     if (theme === 'dark') {
       iconMoon.style.display = 'block';
       iconSun.style.display = 'none';
