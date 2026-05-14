@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update copyright year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
+  // Mobile Menu Toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const navbar = document.getElementById('navbar');
 
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
   });
 
-  // Close menu when clicking a link
+  // Close menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
@@ -19,71 +20,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // DARK MODE TOGGLE LOGIC
-  const themeToggle = document.getElementById('theme-toggle');
-  const iconSystem = document.querySelector('.icon-system');
-  const iconMoon = document.querySelector('.icon-moon');
-  const iconSun = document.querySelector('.icon-sun');
-  const body = document.body;
-
-  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  const updateThemeUI = (theme) => {
-    if (theme === 'system') {
-      const sys = getSystemTheme();
-      iconSystem.style.display = 'block';
-      iconMoon.style.display = 'none';
-      iconSun.style.display = 'none';
-      if (sys === 'dark') {
-        body.setAttribute('data-theme', 'dark');
-      } else {
-        body.removeAttribute('data-theme');
-      }
-    } else if (theme === 'dark') {
-      body.setAttribute('data-theme', 'dark');
-      iconSystem.style.display = 'none';
-      iconMoon.style.display = 'block';
-      iconSun.style.display = 'none';
-    } else {
-      body.removeAttribute('data-theme');
-      iconSystem.style.display = 'none';
-      iconMoon.style.display = 'none';
-      iconSun.style.display = 'block';
-    }
-  };
-
-  // Init theme
-  let currentTheme = localStorage.getItem('theme') || 'system';
-  updateThemeUI(currentTheme);
-
-  themeToggle.addEventListener('click', () => {
-    const themes = ['system', 'light', 'dark'];
-    const currentIndex = themes.indexOf(currentTheme);
-    currentTheme = themes[(currentIndex + 1) % themes.length];
-    localStorage.setItem('theme', currentTheme);
-    updateThemeUI(currentTheme);
-  });
-
-  // Listen to system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (currentTheme === 'system') {
-      updateThemeUI('system');
-    }
-  });
-
-  // Navbar scroll effect - add background when scrolled
-  const navbar = document.querySelector('.navbar');
-  let lastScroll = 0;
-
+  // Navbar Scroll Effect (Blur on scroll)
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
+    if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
   });
+
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('theme-toggle');
+  const iconMoon = document.querySelector('.icon-moon');
+  const iconSun = document.querySelector('.icon-sun');
+  const html = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  setTheme(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  });
+
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    if (theme === 'dark') {
+      iconMoon.style.display = 'block';
+      iconSun.style.display = 'none';
+    } else {
+      iconMoon.style.display = 'none';
+      iconSun.style.display = 'block';
+    }
+  }
 });
