@@ -544,3 +544,30 @@ footer { padding: 2rem 0; text-align: center; color: var(--text-muted); font-siz
     justify-content: center;
   }
 }
+
+/* =========================================
+   HERO SECTION - Times New Roman Font Only
+   ========================================= */
+.hero h1,
+.hero .hero-subtitle,
+.hero .hero-tagline,
+.hero .btn,
+.hero .scroll-indicator {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* Optional: Adjust font weights for Times New Roman */
+.hero h1 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.hero .hero-subtitle {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero .hero-tagline {
+  font-weight: 400;
+  font-style: italic;
+}
