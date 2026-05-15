@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(start + (target - start) * easeOut);
       
-      el.textContent = current + (target >= 50 ? '+' : '+');
+      el.textContent = current + '+';
       
       if (progress < 1) {
         requestAnimationFrame(update);
