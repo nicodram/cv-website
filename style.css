@@ -1331,3 +1331,29 @@ a:focus-visible, button:focus-visible {
     padding: 2rem 0;
   }
 }
+
+/* Visitor Counter Styling */
+.visitor-counter {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  opacity: 0.85;
+  transition: color var(--transition-fast);
+}
+
+.visitor-counter:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
+#visitor-count {
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  min-width: 2.5rem;
+  display: inline-block;
+}
