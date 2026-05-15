@@ -1,12 +1,10 @@
 /* ========================================
-   EMERGENT-STYLE CV WEBSITE
+   EMERGENT-STYLE CV WEBSITE V2
    Nicodemus Reno Anjasmoro
-   Dark Minimalist + Cyberpunk Accents
    ======================================== */
 
 /* --- 1. CSS VARIABLES --- */
 :root {
-  /* Fonts */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   
@@ -318,6 +316,7 @@ img, svg { display: block; max-width: 100%; }
   color: var(--text-primary);
 }
 
+/* Gradient Text Effect */
 .text-gradient {
   background: var(--gradient-text);
   -webkit-background-clip: text;
@@ -351,7 +350,6 @@ img, svg { display: block; max-width: 100%; }
   display: block;
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--accent);
   line-height: 1;
   margin-bottom: 0.3rem;
 }
@@ -369,7 +367,7 @@ img, svg { display: block; max-width: 100%; }
   background: var(--border);
 }
 
-/* Hero Buttons */
+/* Hero Buttons - Uniform Glass Style */
 .hero-actions {
   display: flex;
   gap: 1rem;
@@ -377,46 +375,37 @@ img, svg { display: block; max-width: 100%; }
   flex-wrap: wrap;
 }
 
-.btn-primary {
+/* Both buttons now share this glass style */
+.btn-primary, .btn-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.9rem 2rem;
-  background: var(--accent);
-  color: #000;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all var(--transition-fast);
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.9rem 2rem;
   background: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 500;
   font-size: 0.95rem;
   transition: all var(--transition-fast);
   cursor: pointer;
+  min-width: 200px;
 }
 
-.btn-secondary:hover {
+.btn-primary:hover, .btn-secondary:hover {
   border-color: var(--border-hover);
   background: var(--bg-card-hover);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Button Icon Animation */
+.btn-primary svg, .btn-secondary svg {
+  transition: transform var(--transition-fast);
+}
+.btn-primary:hover svg, .btn-secondary:hover svg {
+  transform: translateX(4px);
 }
 
 .btn-large {
