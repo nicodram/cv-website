@@ -1,5 +1,5 @@
 /* ========================================
-   EMERGENT-STYLE CV WEBSITE V2
+   EMERGENT-STYLE CV WEBSITE V2 - MOBILE FIX
    Nicodemus Reno Anjasmoro
    ======================================== */
 
@@ -279,6 +279,7 @@ img, svg { display: block; max-width: 100%; }
   text-align: center;
   max-width: 900px;
   padding: 0 2rem;
+  padding-bottom: 6rem;
 }
 
 .hero-badge {
@@ -415,7 +416,8 @@ img, svg { display: block; max-width: 100%; }
   width: 100%;
   justify-content: center;
 }
-/* Scroll Indicator - Updated Positioning */
+
+/* Scroll Indicator - Below Buttons */
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -424,92 +426,28 @@ img, svg { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.8;
+  gap: 0.5rem;
+  z-index: 2;
 }
 
 .scroll-indicator span {
   font-size: 0.7rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 500;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
 }
 
 .scroll-line {
   width: 1px;
-  height: 35px;
+  height: 30px;
   background: linear-gradient(to bottom, var(--accent), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.3); }
-}
-
-/* Mobile Responsive - Fix Button & Scroll Layout */
-@media (max-width: 768px) {
-  .hero-actions {
-    flex-direction: column;
-    gap: 0.8rem;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-  
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    padding: 0.95rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  /* Reposition scroll indicator untuk mobile */
-  .scroll-indicator {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-  
-  .scroll-indicator span {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-  }
-  
-  .scroll-line {
-    height: 30px;
-    width: 1px;
-  }
-  
-  .hero-stats {
-    margin-bottom: 2.5rem;
-  }
-  
-  .hero-tagline {
-    margin-bottom: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-actions {
-    max-width: 280px;
-  }
-  
-  .btn-primary, .btn-secondary {
-    padding: 0.9rem 1.2rem;
-    font-size: 0.85rem;
-  }
-  
-  .scroll-indicator {
-    margin-top: 1.5rem;
-    padding-top: 1.2rem;
-  }
+  50% { opacity: 1; transform: scaleY(1.2); }
 }
 
 /* --- 6. SECTIONS --- */
@@ -1178,7 +1116,7 @@ img, svg { display: block; max-width: 100%; }
   transform: translateY(0);
 }
 
-/* --- 15. MOBILE RESPONSIVE --- */
+/* --- 15. MOBILE RESPONSIVE - FIXED --- */
 @media (max-width: 1024px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1216,6 +1154,65 @@ img, svg { display: block; max-width: 100%; }
     display: block;
   }
   
+  /* Hero Mobile Fix */
+  .hero-content {
+    padding: 0 1.5rem;
+    padding-bottom: 8rem;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+  
+  .hero-tagline {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .stat-divider {
+    width: 40px;
+    height: 1px;
+  }
+  
+  /* Buttons stay side-by-side on mobile */
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .btn-primary, .btn-secondary {
+    flex: 1;
+    min-width: auto;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Scroll indicator below buttons */
+  .scroll-indicator {
+    bottom: 1.5rem;
+    opacity: 0.6;
+  }
+  
+  .scroll-indicator span {
+    font-size: 0.65rem;
+  }
+  
+  .scroll-line {
+    height: 25px;
+  }
+  
+  /* Other mobile fixes */
   .summary-grid {
     grid-template-columns: 1fr;
   }
@@ -1231,16 +1228,6 @@ img, svg { display: block; max-width: 100%; }
   .contact-wrapper {
     grid-template-columns: 1fr;
     padding: 2rem;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .stat-divider {
-    width: 40px;
-    height: 1px;
   }
   
   .footer-content {
@@ -1267,18 +1254,33 @@ img, svg { display: block; max-width: 100%; }
     padding: 0 1.2rem;
   }
   
-  .hero h1 {
-    font-size: 2rem;
+  .hero-content {
+    padding: 0 1.2rem;
+    padding-bottom: 7rem;
   }
   
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-tagline {
+    font-size: 0.95rem;
+  }
+  
+  /* Buttons full width on very small screens */
   .hero-actions {
     flex-direction: column;
-    width: 100%;
+    align-items: stretch;
   }
   
   .btn-primary, .btn-secondary {
     width: 100%;
     justify-content: center;
+  }
+  
+  /* Scroll indicator still below */
+  .scroll-indicator {
+    bottom: 1.2rem;
   }
 }
 
