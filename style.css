@@ -1357,3 +1357,28 @@ a:focus-visible, button:focus-visible {
   min-width: 2.5rem;
   display: inline-block;
 }
+// Visitor Counter Logic
+async function loadVisitorCount() {
+  const countEl = document.getElementById('visitor-count');
+  if (!countEl) return;
+
+  try {
+    // Menggunakan CountAPI (free, reliable untuk static site)
+    const response = await fetch('https://api.countapi.xyz/hit/nicodram-github-io/cv-visits');
+    if (!response.ok) throw new Error('API limit reached');
+    
+    const data = await response.json();
+    countEl.textContent = data.value.toLocaleString();
+  } catch (error) {
+    // Fallback jika API error/rate limit
+    countEl.textContent = '500+';
+    console.log('Visitor counter fallback activated');
+  }
+}
+
+// Jalankan setelah DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadVisitorCount);
+} else {
+  loadVisitorCount();
+}
